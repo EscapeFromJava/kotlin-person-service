@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  persondb:
+    image: postgres
+    container_name: "persondb"
+#    volumes:
+#      - newDatabase:/home/sharedData
+    ports:
+      - 5432:5432
+    networks:
+      - person-network
+    environment:
+      - POSTGRES_DB=test
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=bestuser
+
+  person-service:
+    build: .
+    container_name: person-service
+    ports:
+      - 8081:8080
+    networks:
+      - person-network
+    links:
+      - persondb
+
+networks:
+  person-network:
+    external: true
+
+#volumes:
+#  newDatabase:

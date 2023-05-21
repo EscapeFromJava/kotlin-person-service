@@ -1,0 +1,22 @@
+spring:
+  datasource:
+#    url: ${POSTGRES_URL}
+#    username: ${POSTGRES_USER}
+#    password: ${POSTGRES_PASSWORD}
+    url: 'jdbc:postgresql://persondb:5432/test'
+    username: 'postgres'
+    password: 'bestuser'
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+
+server:
+  port: 8080
